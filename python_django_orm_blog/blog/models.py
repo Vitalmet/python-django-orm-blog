@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractBaseUser
 
 class TimestampedModel(models.Model):
     """An abstract model with a pair of timestamps."""
@@ -11,13 +11,16 @@ class TimestampedModel(models.Model):
         abstract = True
 
 
-class User(TimestampedModel):
+class User(AbstractBaseUser, TimestampedModel):
     """A blog user."""
 
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=100, null=True)
     last_name = models.CharField(max_length=100, null=True)
     nickname = models.CharField(max_length=100, null=True)
+
+    password = models.CharField(max_length=100)
+    USERNAME_FIELD = "email"
 
 
 class Tag(TimestampedModel):
