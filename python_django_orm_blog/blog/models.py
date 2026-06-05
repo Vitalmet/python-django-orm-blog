@@ -1,5 +1,6 @@
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
+from django.db import models
+
 
 class TimestampedModel(models.Model):
     """An abstract model with a pair of timestamps."""
